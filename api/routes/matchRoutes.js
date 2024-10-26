@@ -1,7 +1,7 @@
 import express from 'express';
-import { protectRoute } from '../middleware/auth';
+import { protectRoute } from '../middleware/auth.js';
 import { get } from 'mongoose';
-import { getUserProfiles,getMatches,swipeRight,swipeLeft} from '../controllers/matchController';
+import { getUserProfiles,getMatches,swipeRight,swipeLeft} from '../controllers/matchController.js';
 const router = express.Router();
 
 router.post("/swipe-right/:likedUserId" , protectRoute,swipeRight);

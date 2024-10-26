@@ -1,6 +1,7 @@
 import express from "express";
 import { signup,login,logout } from "../controllers/authController.js";
-impio
+import {protectRoute} from "../middleware/auth.js";
+
 const router = express.Router();
 
 router.post("/signup" ,signup);
