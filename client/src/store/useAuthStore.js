@@ -5,7 +5,7 @@ import toast from "react-hot-toast"
 export const useAuthStore = create ((set)=>({
     authUser:null,
     checkingAuth:true,
-
+    loading:false,
 
     signup:async(signupData)=>{
          try {
@@ -19,12 +19,15 @@ export const useAuthStore = create ((set)=>({
             set({loading:false})
          }
     },
-    checkAuth : async ()=> {
+    checkAuth : async ()=> {   
        try {
         const res = await axiosInstance.get("/auth/me");
-        console.log(res.data)
+        set({authUser : res.data.user})
        } catch (error) {
-        
+        set({authUser:null});
+        console.log(error);
+       }finally{
+        set({checkingAuth: false})
        }
     }
 }))
