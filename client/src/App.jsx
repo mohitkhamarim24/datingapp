@@ -4,16 +4,17 @@ import AuthPage from "./pages/AuthPage";
 import ChatPage from "./pages/ChatPage";
 import ProfilePage from "./pages/ProfilePage";
 import { useAuthStore } from "./store/useAuthStore";
-import { useEffect } from "react";
+import { useEffect, } from "react";
 import { Toaster } from "react-hot-toast";
 import { Navigate } from "react-router-dom";
 
 function App() {
 
   const{checkAuth,authUser,checkingAuth}=useAuthStore();
-  useEffect(()=>{
-  checkAuth()
-  },[checkAuth])
+  
+	useEffect(() => {
+		checkAuth();
+	}, [checkAuth]);
 
 
   if(checkingAuth){
