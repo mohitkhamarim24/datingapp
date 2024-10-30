@@ -136,7 +136,7 @@ const SignUpForm = () => {
 							value='male'
 							checked={genderPreference === "male"}
 							onChange={(e) => setGenderPreference(e.target.value)}
-							className='h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300'
+							className='h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-gray-300'
 						/>
 						<label htmlFor='prefer-male' className='ml-2 block text-sm text-gray-900'>
 							Male
@@ -150,7 +150,7 @@ const SignUpForm = () => {
 							value='female'
 							checked={genderPreference === "female"}
 							onChange={(e) => setGenderPreference(e.target.value)}
-							className='h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300'
+							className='h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-gray-300'
 						/>
 						<label htmlFor='prefer-female' className='ml-2 block text-sm text-gray-900'>
 							Female
@@ -164,7 +164,7 @@ const SignUpForm = () => {
 							value='both'
 							checked={genderPreference === "both"}
 							onChange={(e) => setGenderPreference(e.target.value)}
-							className='h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300'
+							className='h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-yellow-300'
 						/>
 						<label htmlFor='prefer-both' className='ml-2 block text-sm text-gray-900'>
 							Both
@@ -176,8 +176,8 @@ const SignUpForm = () => {
 					type='submit'
 					className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${
 						loading
-							? "bg-pink-400 cursor-not-allowed"
-							: "bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+							? "bg-yellow-400 cursor-not-allowed"
+							: "bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
 					}`}
 					disabled={loading}
 				>
