@@ -46,15 +46,20 @@ export const useAuthStore = create((set) => ({
             set({ checkingAuth: false });
         }
     },
-    logout: async () => {
+	logout: async () => {
 		try {
 			const res = await axiosInstance.post("/auth/logout");
-
-			if (res.status === 200) set({ authUser: null });
+	
+			if (res.status === 200) {
+				set({ authUser: null });
+				localStorage.removeItem("authUser"); // Ensure localStorage is cleared
+				toast.success("Logged out successfully");
+			}
 		} catch (error) {
-			toast.error(error.response.data.message || "Something went wrong");
+			toast.error(error.response?.data.message || "Something went wrong");
 		}
 	},
+	
     
 }));
  

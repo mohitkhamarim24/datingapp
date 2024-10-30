@@ -99,13 +99,18 @@ export const login =  async(req,res)=>{
 
 
 }
-export const logout = async(req,res) =>{
 
+export const logout = async (req, res) => {
     try {
-        res.clearCookie("jwt-netflix");
-        res.status(200).json({success:true,message:"Logged out successfully"})
+        // Clear the cookie with the same name and settings used when setting it
+        res.clearCookie("jwt", {
+            httpOnly: true,
+            sameSite: "strict",
+            secure: process.env.NODE_ENV === "production",
+        });
+        res.status(200).json({ success: true, message: "Logged out successfully" });
     } catch (error) {
-        console.log("Error in logout controller" , error.message);
-        res.status(500).json({success:false,message: "Internal Server error"});
+        console.log("Error in logout controller:", error.message);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
     }
-}
+};
