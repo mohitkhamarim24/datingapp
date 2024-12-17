@@ -1,5 +1,5 @@
-
 import User from "../models/User.js";
+import cloudinary from "../config/cloudinary.js";
 
 export const updateProfile = async (req, res) => {
 	// image => cloudinary -> image.cloudinary.your => mongodb
@@ -32,6 +32,8 @@ export const updateProfile = async (req, res) => {
 			success: true,
 			user: updatedUser,
 		});
+
+		console.log("Updated User:", updatedUser);
 	} catch (error) {
 		console.log("Error in updateProfile: ", error);
 		res.status(500).json({
