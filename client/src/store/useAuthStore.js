@@ -12,7 +12,7 @@ export const useAuthStore = create((set) => ({
 		try {
 			set({ loading: true });
 			const res = await axiosInstance.post("/auth/signup", signupData);
-			set({ authUser: res.data.user });
+			set({ authUser:res.data.user});
 	
 
 			toast.success("Account created successfully");
