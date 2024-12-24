@@ -10,22 +10,12 @@ export const useUserStore = create((set) => ({
 		try {
 			set({ loading: true });
 			const res = await axiosInstance.put("/users/update", data);
-		
-			// Debug the full response structure
-			console.log("Full API Response:", res);
-		
-			const updatedUser = res?.data?.user;
-			if (updatedUser) {
-				useAuthStore.getState().setAuthUser(updatedUser);
-				toast.success("Profile updated successfully");
-			} else {
-				throw new Error("Invalid server response: 'user' not found");
-			}
+			useAuthStore.getState().setAuthUser(res.data.user);
+			toast.success("Profile updated successfully");
 		} catch (error) {
-			console.error("Error updating profile:", error);
-			toast.error(error.response?.data?.message || "Something went wrong");
+			toast.error(error.response.data.message || "Something went wrong");
 		} finally {
 			set({ loading: false });
 		}
-	}
+	},
 }));

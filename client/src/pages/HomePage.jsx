@@ -1,21 +1,32 @@
 import Sidebar from "../components/Sidebar.jsx";
 import { useMatchStore } from "../store/useMatchStore";
 import { useEffect } from "react";
-import Header from "../components/Header.jsx"
+import { Header } from "../components/Header";
 import { Frown } from "lucide-react";
-import SwipeArea from "../components/SwipeArea.jsx"
+import SwipeArea from "../components/SwipeArea";
 import SwipeFeedback from "../components/SwipeFeedback.jsx"
+import { useAuthStore } from "../store/useAuthStore.js";
 const HomePage = () => {
 
-  const{isLoadingUserProfiles,getUserProfiles,userProfiles} = useMatchStore();
+  const { isLoadingUserProfiles, getUserProfiles, userProfiles, subscribeToNewMatches, unsubscribeFromNewMatches } =
+  useMatchStore();
 
-  useEffect(()=>{
-    getUserProfiles();
-  },[getUserProfiles]);
+const { authUser } = useAuthStore();
 
-  console.log("User Profiles",userProfiles)
+useEffect(() => {
+  getUserProfiles();
+}, [getUserProfiles]);
+
+useEffect(() => {
+  authUser && subscribeToNewMatches();
+
+  return () => {
+    unsubscribeFromNewMatches();
+  };
+}, [subscribeToNewMatches, unsubscribeFromNewMatches, authUser]);
+
   return (
-        <div className="flex flex-col lg:flex-row min-h-screen bg-gradient-to-br from-pink-100 to-purple-100
+        <div className="flex flex-col lg:flex-row min-h-screen bg-gradient-to-br from-yellow-100 to-purple-100
           overflow-hidden">
          <Sidebar />
 
@@ -57,7 +68,7 @@ const LoadingUI = () => {
 				<div className='px-4 pt-4 h-3/4'>
 					<div className='w-full h-full bg-gray-200 rounded-lg' />
 				</div>
-				<div className='card-body bg-gradient-to-b from-white to-pink-50 p-4'>
+				<div className='card-body bg-gradient-to-b from-white to-yellow-50 p-4'>
 					<div className='space-y-2'>
 						<div className='h-6 bg-gray-200 rounded w-3/4' />
 						<div className='h-4 bg-gray-200 rounded w-1/2' />
